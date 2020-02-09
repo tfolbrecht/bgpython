@@ -9,13 +9,17 @@ all:
 
 .PHONY: stage
 stage:
-	mkdir -p $(BUILDDIR)/{pdf,html,translations,examples}
+	# the ubuntu build server was making a dir called {pdf,html,translations,examples} ???
+	mkdir -p $(BUILDDIR)/pdf
+	mkdir -p $(BUILDDIR)/html
+	mkdir -p $(BUILDDIR)/translations
+	mkdir -p $(BUILDDIR)/examples
 	cp -v website/* website/.htaccess $(BUILDDIR)
 	cp -v src/$(PACKAGE)*.pdf $(BUILDDIR)/pdf/
 	cp -v src/$(PACKAGE).html $(BUILDDIR)/html/index.html
 	#cp -v src/{cs,dataencap}.svg $(BUILDDIR)/html/
 	#cp -v translations/*.{pdf,html} $(BUILDDIR)/translations 2>/dev/null || : 
-	cp -v examples/{*,.htaccess} $(BUILDDIR)/examples
+	cp -v examples/* $(BUILDDIR)/examples # same issue
 	mkdir -p $(BUILDTMP)/$(PACKAGE)_examples
 	cp -v examples/* $(BUILDTMP)/$(PACKAGE)_examples
 	( cd $(BUILDTMP); zip -r $(PACKAGE)_examples.zip $(PACKAGE)_examples )
