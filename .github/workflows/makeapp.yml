@@ -16,3 +16,6 @@ jobs:
     - run: pandoc --version 
     - run: make
     - run: make stage
+      
+    - name: Create a Release
+      uses: actions/create-release@v1
