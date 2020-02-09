@@ -9,7 +9,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    # Grab dependancies from package repo
     - run: sudo apt-get install -y make fonts-liberation texlive-xetex
+    # Grab pandoc from GitHub release, because ubuntus package is old and breaks the Makefile
     - run: wget https://github.com/jgm/pandoc/releases/download/2.9.1.1/pandoc-2.9.1.1-1-amd64.deb
     - run: sudo dpkg -i pandoc-2.9.1.1-1-amd64.deb
     - run: rm pandoc-2.9.1.1-1-amd64.deb
